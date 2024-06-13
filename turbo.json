@@ -1,17 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "dev:prepare": {
+      "outputs": ["dist", ".nuxt", "playground/.nuxt"]
+    },
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.*"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
+      "dependsOn": ["dev:prepare", "^build"],
+      "outputs": ["dist"]
     }
   }
 }
